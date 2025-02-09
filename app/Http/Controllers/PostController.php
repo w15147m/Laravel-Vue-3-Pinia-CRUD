@@ -29,6 +29,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        
         Post::create($request->all());
         return response()->json($request->all());
 
@@ -55,14 +56,18 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        
+        $post->update($request->all());
+        return response()->json($request->all());
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::find($id)->delete();
+        return response()->json($post);
     }
 }
